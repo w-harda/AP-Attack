@@ -1,0 +1,26 @@
+# AP-Attack 复现依赖清单（Linux x86_64 / Python 3.9.25）
+# 本文件是安装清单，不代表本次已经执行安装。
+# 先安装 PyTorch 官方匹配组合；不要混装系统 CUDA Toolkit。
+
+# Conda（推荐；CUDA 11.7 runtime）
+# conda install pytorch==1.13.1 torchvision==0.14.1 pytorch-cuda=11.7 -c pytorch -c nvidia
+
+# Pip：当前两阶段主流程
+timm==0.6.13
+numpy==1.23.5
+Pillow==9.5.0
+yacs==0.1.8
+ftfy==6.1.1
+regex==2023.12.25
+tqdm==4.66.1
+
+# Pip：仓库中 misc/advers 辅助模块的可选依赖
+PyYAML==6.0.1
+easydict==1.10
+matplotlib==3.7.5
+
+# 不安装：外部 clip、torchaudio、scipy、sklearn、opencv-python、pandas、wandb
+# 理由：当前源码主流程未 import；CLIP 实现和 BPE 词表位于 model/clip/。
+
+# PyTorch 兼容回退（仅当 1.13.1 环境无法解出时，二选一）：
+# conda install pytorch==1.12.1 torchvision==0.13.1 cudatoolkit=11.6 -c pytorch -c conda-forge
