@@ -289,7 +289,7 @@ if __name__ == '__main__':
     model.eval()
 
     surrrgot_model = IDE(num_classes=num_classes).cuda()
-    surrrgot_model.load_param('./ide_dukemtmcreid.pth')
+    surrrgot_model.load_param(cfg.SOLVER.STAGE2.SURROGATE_MODEL)
 
     surrrgot_model.eval()
 

@@ -2,12 +2,17 @@
 # 本文件是安装清单，不代表本次已经执行安装。
 # 先安装 PyTorch 官方匹配组合；不要混装系统 CUDA Toolkit。
 
-# Conda（推荐；CUDA 11.7 runtime）
+# Conda（服务器已验证；CUDA 11.7 runtime）
 # conda install pytorch==1.13.1 torchvision==0.14.1 pytorch-cuda=11.7 -c pytorch -c nvidia
+# 服务器已验证的 Conda 运行时（保留，不通过 pip 安装）：
+# mkl==2023.1.0
+# intel-openmp==2023.1.0
+# 不要升级到 mkl==2025.0.0：其与 PyTorch 1.13.1 组合会触发 iJIT_NotifyEvent。
 
 # Pip：当前两阶段主流程
 timm==0.6.13
 numpy==1.23.5
+# 不要使用 numpy==2.0.1：其与 PyTorch 1.13.1 不兼容。
 Pillow==9.5.0
 yacs==0.1.8
 ftfy==6.1.1

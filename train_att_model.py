@@ -1,5 +1,4 @@
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 
 from utils.logger import setup_logger
 from datasets.make_dataloader_clipreid import make_dataloader
