@@ -51,6 +51,8 @@ def do_train_att_1(cfg,
         scheduler.step(epoch)
         model.train()
         for n_iter, (img, vid, target_cam, target_view) in enumerate(train_loader_stage1):
+            # zero_grad prevents unintended gradient accumulation across mini-batches.
+            optimizer.zero_grad()
             img = img.to(device)
             target = vid.to(device)
             with amp.autocast(enabled=True):

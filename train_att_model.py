@@ -73,6 +73,10 @@ if __name__ == '__main__':
     if cfg.SOLVER.STAGE1.PR_MODEL!='no':
         model.load_param(cfg.SOLVER.STAGE1.PR_MODEL)
 
+    # Stage 1 only trains attribute-aware textual inversion networks.
+    for name, param in model.named_parameters():
+        param.requires_grad_("prompt_text_" in name)
+
     # loss_func, center_criterion = make_loss(cfg, num_classes=num_classes)
 
     optimizer_1stage = make_optimizer_textInverse(cfg, model)
