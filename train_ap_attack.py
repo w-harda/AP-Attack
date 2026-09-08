@@ -286,10 +286,14 @@ if __name__ == '__main__':
     model = make_model(cfg, num_class=num_classes, camera_num=camera_num, view_num = view_num)
     # NOTE 这里导入最后的模型
     model.load_param(cfg.SOLVER.STAGE2.TARGET_MODEL)
+    for param in model.parameters():
+        param.requires_grad_(False)
     model.eval()
 
     surrrgot_model = IDE(num_classes=num_classes).cuda()
     surrrgot_model.load_param(cfg.SOLVER.STAGE2.SURROGATE_MODEL)
+    for param in surrrgot_model.parameters():
+        param.requires_grad_(False)
 
     surrrgot_model.eval()
 
